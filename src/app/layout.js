@@ -37,6 +37,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={` ${roboto.variable}  ${montserrat.variable} `}>
+      <script   src="https://www.google.com/recaptcha/api.js"  async  defer></script>
       <body>
         <Header/>
         {children}

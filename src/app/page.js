@@ -4,13 +4,14 @@ import Link from "next/link";
 import { homeApi } from "@/assets/api_data/api";
 import TestimonialSection from "@/component/TestimonialSection";
 import FAQSection from "@/component/FAQSection";
-import ContactSection from "../../ContactSection";
+// import ContactSection from "../component/ContactSection";
 import HeroBanner from "@/component/HeroBanner";
 import TechnologyServices from "@/component/TechnologyServices";
 import AboutSection from "@/component/AboutSection";
 import Services from "@/component/Services";
 import Expertise from "@/component/Expertise";
 import WhyChooseUs from "@/component/WhyChooseUs";
+import ContactSection from "@/component/ContactSection";
 
 export default function  Home() {
     const testimonialsdata = homeApi?.testimonials;
