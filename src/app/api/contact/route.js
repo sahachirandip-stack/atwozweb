@@ -12,7 +12,7 @@ export async function POST(request) {
     const body = await request.json();
 
     const {
-      captchaToken,
+    //   captchaToken,
       ...formData
     } = body;
 
@@ -38,47 +38,47 @@ export async function POST(request) {
     /**
      * Verify Google reCAPTCHA
      */
-    if (!captchaToken) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "reCAPTCHA verification is required.",
-        },
-        { status: 400 }
-      );
-    }
+    // if (!captchaToken) {
+    //   return NextResponse.json(
+    //     {
+    //       success: false,
+    //       message:
+    //         "reCAPTCHA verification is required.",
+    //     },
+    //     { status: 400 }
+    //   );
+    // }
 
-    const captchaResponse =
-      await fetch(
-        "https://www.google.com/recaptcha/api/siteverify",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            secret:
-              process.env.RECAPTCHA_SECRET_KEY,
-            response: captchaToken,
-          }),
-        }
-      );
+    // const captchaResponse =
+    //   await fetch(
+    //     "https://www.google.com/recaptcha/api/siteverify",
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type":
+    //           "application/x-www-form-urlencoded",
+    //       },
+    //       body: new URLSearchParams({
+    //         secret:
+    //           process.env.RECAPTCHA_SECRET_KEY,
+    //         response: captchaToken,
+    //       }),
+    //     }
+    //   );
 
-    const captchaResult =
-      await captchaResponse.json();
+    // const captchaResult =
+    //   await captchaResponse.json();
 
-    if (!captchaResult.success) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "reCAPTCHA verification failed.",
-        },
-        { status: 400 }
-      );
-    }
+    // if (!captchaResult.success) {
+    //   return NextResponse.json(
+    //     {
+    //       success: false,
+    //       message:
+    //         "reCAPTCHA verification failed.",
+    //     },
+    //     { status: 400 }
+    //   );
+    // }
 
     const {
       name,

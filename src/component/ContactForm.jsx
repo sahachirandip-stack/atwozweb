@@ -15,7 +15,7 @@ const defaultValues = {
 };
 
 export default function ContactForm() {
-  const [captchaToken, setCaptchaToken] = useState("");
+//   const [captchaToken, setCaptchaToken] = useState("");
   const [status, setStatus] = useState({
     type: "",
     message: "",
@@ -42,15 +42,15 @@ export default function ContactForm() {
   /**
    * reCAPTCHA callback
    */
-  useEffect(() => {
-    window.enableSubmitBtn = (token) => {
-      setCaptchaToken(token);
-    };
+//   useEffect(() => {
+//     window.enableSubmitBtn = (token) => {
+//       setCaptchaToken(token);
+//     };
 
-    return () => {
-      delete window.enableSubmitBtn;
-    };
-  }, []);
+//     return () => {
+//       delete window.enableSubmitBtn;
+//     };
+//   }, []);
 
   /**
    * Bootstrap validation class
@@ -77,14 +77,14 @@ export default function ContactForm() {
     /**
      * Check reCAPTCHA
      */
-    if (!captchaToken) {
-      setStatus({
-        type: "error",
-        message: "Please verify that you are not a robot.",
-      });
+    // if (!captchaToken) {
+    //   setStatus({
+    //     type: "error",
+    //     message: "Please verify that you are not a robot.",
+    //   });
 
-      return;
-    }
+    //   return;
+    // }
 
     try {
       const response = await fetch("/api/contact", {
@@ -94,7 +94,7 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...data,
-          captchaToken,
+        //   captchaToken,
         }),
       });
 
@@ -117,11 +117,11 @@ export default function ContactForm() {
       /**
        * Reset Google reCAPTCHA
        */
-      if (window.grecaptcha) {
-        window.grecaptcha.reset();
-      }
+    //   if (window.grecaptcha) {
+    //     window.grecaptcha.reset();
+    //   }
 
-      setCaptchaToken("");
+    //   setCaptchaToken("");
     } catch (error) {
       console.error(error);
 
@@ -311,15 +311,7 @@ export default function ContactForm() {
         </div>
 
         {/* Google reCAPTCHA */}
-        <div className="col-sm-6">
-          <div className="form-floating">
-            <div
-              className="g-recaptcha"
-              data-sitekey="6Ldi2bwtAAAAAB2LTzht2CB_WBOrSa2t00c2Fvin"
-              data-callback="enableSubmitBtn"
-            />
-          </div>
-        </div>
+        
 
         {/* Submit */}
         <div className="col-12 text-center">
@@ -327,7 +319,7 @@ export default function ContactForm() {
             className="btn w-100 py-3"
             id="submitBtn"
             type="submit"
-            disabled={isSubmitting || !captchaToken}
+            disabled={isSubmitting }
           >
             {isSubmitting
               ? "Sending..."
