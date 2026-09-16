@@ -12,7 +12,6 @@ export const contactSchema = z.object({
     .trim()
     .min(1, "Please enter your email.")
     .email("Please enter a valid email address."),
-
   mobile: z
     .string()
     .trim()
